@@ -1,66 +1,39 @@
 package lab2;
-
 import java.util.Scanner;
 
-public class qMain {
+public class Main {
     public static void main(String[] args) {
-        System.out.println("Witam w dzienniku ocen studenta.");
+        program();
+    }
+
+    private static void program () {
+        System.out.println("Cześć,\nJestem programem liczącym parametry walców");
         Scanner in = new Scanner(System.in);
-        GradeList gradeList = new GradeList();
+        Walec walec = new Walec();
+
         boolean run = true;
         while (run) {
-            displayMenu();
-            String option = in.nextLine();
-            switch (option) {
-                case "1" -> addGrade(in, gradeList);
-                case "2" -> getMean(gradeList);
-                case "3" -> highestGrade(gradeList);
-                case "4" -> smallestGrade(gradeList);
-                case "5" -> {
-                    run = false;
-                    System.out.println("Zakończono działanie programu.");
-                }
-                default -> System.out.println("Wprowadzono niepoprawną opcję.");
+            System.out.print("Opuść program 'q' lub podaj promień: ");
+            String input = in.nextLine();
+
+            if (input.equals("q")) {
+                run = false;
+                System.out.println("Opuszczono program");
+            } else {
+                float radius = Float.parseFloat(input);
+                walec.setRadius(radius);
+                System.out.print("wysokość: ");
+                String endInput = in.nextLine();
+                float height = Float.parseFloat(endInput);
+                walec.setHeight(height);
+                System.out.println("Pole powierzchni podstawy = " + walec.calculateBaseArea());
+                System.out.println("Pole powierzchni bocznej = " + walec.calculateLateralArea());
+                System.out.println("Pole powierzchni całkowitej = " + walec.calculateTotalArea());
+                System.out.println("Objętość = " + walec.calculateVolume());
+
+//                String input = in.nextLine();
+
             }
         }
     }
-
-    private static void getMean(GradeList gradeList)  {
-        final float mean = gradeList.getMean();
-        if (mean == 0) System.out.println("Student nie ma jeszcze żadych ocen.");
-        else System.out.println(mean);
-    }
-
-    private static void highestGrade(GradeList gradeList)  {
-        final float highestGrade = gradeList.getHighestGrade();
-        if (highestGrade == 0) System.out.println("Student nie ma jeszcze żadych ocen.");
-        else System.out.println(highestGrade);
-    }
-
-    private static void smallestGrade(GradeList gradeList)  {
-        final float smallestGrade = gradeList.getSmallestGrade();
-        if (smallestGrade == 0) System.out.println("Student nie ma jeszcze żadych ocen.");
-        else System.out.println(smallestGrade);
-    }
-
-    private static void addGrade(Scanner in, GradeList grades) {
-        System.out.print("Wprowadź ocenę:");
-        float grade = Float.parseFloat(in.nextLine());
-        try {
-            grades.addGrade(grade);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-        }
-    }
-
-    private static void displayMenu() {
-        System.out.println("""
-                Wybierz jedną z opcji:
-                1. Dodaj nową ocenę
-                2. Oblicz średnią ocen studenta
-                3. Wyszukaj najwyższą ocenę studenta
-                4. Wyszukaj najniższą ocenę studenta
-                5. Wyjście z programu.""");
-    }
-
 }
