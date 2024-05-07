@@ -45,11 +45,11 @@ public class Spotkanie {
 
     @Override public String toString() {
         StringBuilder result = new StringBuilder();
-        result.append(this.description).append("\n");
-        result.append(this.startTime);
+        result.append(this.description);
+        result.append("\nCzas trwania: ").append(this.startTime);
+        result.append(" - ");
         result.append(this.endTime);
-        result.append("\nPriorytet: ");
-        result.append(this.priority);
+        result.append("\nPriorytet: ").append(this.priority);
         return result.toString();
     }
 

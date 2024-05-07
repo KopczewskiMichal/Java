@@ -34,9 +34,10 @@ public class Main {
         System.out.println("Podaj priorytet:");
         int priority = in.nextInt();
         System.out.println("Podaj czas rozpoczęcia (HH:MM):");
-        String startTimeStr = in.nextLine();
+        String startTimeStr = in.next();
         System.out.println("Podaj czas zakończenia (HH:MM):");
-        String endTimeStr = in.nextLine();
+        String endTimeStr = in.next();
+        in.nextLine();
         System.out.println("Podaj opis:");
         String description = in.nextLine();
         Spotkanie spotkanie = Spotkanie.makeSpotkanie(priority, startTimeStr, endTimeStr, description);
@@ -44,20 +45,6 @@ public class Main {
     }
 
 
-    private static void addTestMeetings(Kalendarz kalendarz) {
-        Spotkanie[] meetings = {
-                Spotkanie.makeSpotkanie(2, "10:34:45", "10:45:34", "Spotkanie z szefuniem"),
-                Spotkanie.makeSpotkanie(1, "17:34:45", "18:45:34", "Zakup opon na spotkaniu"),
-                Spotkanie.makeSpotkanie(2, "15:34:45", "16:45:34", "Spotkanie z kolegą"),
-                Spotkanie.makeSpotkanie(3, "10:34:45", "10:45:34", "Spotkanie z klientem"),
-                Spotkanie.makeSpotkanie(2, "16:34:45", "18:45:34", "Gra w golfa"),
-                Spotkanie.makeSpotkanie(1, "12:34:45", "14:45:34", "Gra w tenisa"),
-                Spotkanie.makeSpotkanie(2, "17:34:45", "19:45:34", "Kolacja z żoną")
-        };
-        for (Spotkanie meeting : meetings) {
-            kalendarz.addMetting(5, meeting);
-        }
-    }
 
     private static void removeMeeting (Scanner in, Kalendarz kalendarz) {
         System.out.print("Wprowadź numer dnia: ");
@@ -99,7 +86,7 @@ public class Main {
     private static void displayMenu() {
         System.out.println("""
                 Wybierz jedną z następujacych opcji:
-
+                1. Dodanie spotkania na dany dzień.
                 2. Usunięcie spotkania z wybranego dnia.
                 3. Wyświetlenie wszystkich spotkań w wybranym dniu.
                 4. Wyświetlenie wszysztkich spotkań o wybranym priorytecie.
@@ -107,5 +94,19 @@ public class Main {
                 6. Uzupełnienie dnia 5 przykładowymi danymi.
                 7. Opuszczenie programu.
                 """);
+    }
+    private static void addTestMeetings(Kalendarz kalendarz) {
+        Spotkanie[] meetings = {
+                Spotkanie.makeSpotkanie(2, "10:34:45", "10:45:34", "Spotkanie z szefem"),
+                Spotkanie.makeSpotkanie(1, "17:34:45", "18:45:34", "Zakup opon na spotkaniu"),
+                Spotkanie.makeSpotkanie(2, "15:34:45", "16:45:34", "Spotkanie z kolegą"),
+                Spotkanie.makeSpotkanie(3, "10:34:45", "10:45:34", "Spotkanie z klientem"),
+                Spotkanie.makeSpotkanie(2, "16:34:45", "18:45:34", "Gra w golfa"),
+                Spotkanie.makeSpotkanie(1, "12:34:45", "14:45:34", "Gra w tenisa"),
+                Spotkanie.makeSpotkanie(2, "17:34:45", "19:45:34", "Kolacja")
+        };
+        for (Spotkanie meeting : meetings) {
+            kalendarz.addMetting(5, meeting);
+        }
     }
 }
