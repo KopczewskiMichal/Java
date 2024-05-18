@@ -34,7 +34,7 @@ public class Main {
 
     private static void addMeeting(Scanner in, Kalendarz kalendarz){
         System.out.println("Podaj dzień spotkania");
-        Integer day = Integer.parseInt(in.nextLine());
+        int day = Integer.parseInt(in.nextLine());
         System.out.println("Podaj priorytet:");
         int priority = in.nextInt();
         System.out.println("Podaj czas rozpoczęcia (HH:MM):");
@@ -45,19 +45,25 @@ public class Main {
         System.out.println("Podaj opis:");
         String description = in.nextLine();
         Spotkanie spotkanie = Spotkanie.makeSpotkanie(priority, startTimeStr, endTimeStr, description);
-        kalendarz.addMetting(day, spotkanie);
+        try {
+            kalendarz.addMetting(day, spotkanie);
+        } catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+        } finally {
+            System.out.println("Pomyślnie utworzono spotkanie");
+        }
     }
 
 
     private static void removeMeeting (Scanner in, Kalendarz kalendarz) {
         System.out.print("Wprowadź numer dnia: ");
-        Integer day = Integer.parseInt(in.nextLine());
+        int day = Integer.parseInt(in.nextLine());
         try {
             System.out.println(kalendarz.showMeetings(day, spotkanie -> true));
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
-        Integer meetingIndex = Integer.parseInt(in.nextLine());
+        int meetingIndex = Integer.parseInt(in.nextLine());
         kalendarz.removeMeeting(day, meetingIndex);
         System.out.println("Usunięto spotkanie.");
     }
@@ -65,7 +71,7 @@ public class Main {
 
     private static void showDayMeetingsAfter(Scanner in, Kalendarz kalendarz) {
         System.out.print("Wprowadź numer dnia: ");
-        Integer day = Integer.parseInt(in.nextLine());
+        int day = Integer.parseInt(in.nextLine());
         System.out.println("Wprowadź godzinę rozpoczęcia spotkań (HH:MM):");
         String minStartTime = in.nextLine();
         LocalTime minStartLocalTime = LocalTime.parse(minStartTime);
@@ -74,7 +80,7 @@ public class Main {
 
     private static void showMeetingsBetween(Scanner in, Kalendarz kalendarz) {
         System.out.print("Wprowadź numer dnia: ");
-        Integer day = Integer.parseInt(in.nextLine());
+        int day = Integer.parseInt(in.nextLine());
         System.out.println("Wprowadź godzinę rozpoczęcia spotkań (HH:MM):");
         String minStartTime = in.nextLine();
         LocalTime minStartLocalTime = LocalTime.parse(minStartTime);
@@ -90,18 +96,18 @@ public class Main {
 
     private static void showMeetingsAfterTimeWithPriority(Scanner in, Kalendarz kalendarz) {
         System.out.print("Wprowadź numer dnia: ");
-        Integer day = Integer.parseInt(in.nextLine());
+        int day = Integer.parseInt(in.nextLine());
         System.out.println("Wprowadź godzinę rozpoczęcia spotkań (HH:MM):");
         String minStartTime = in.nextLine();
         LocalTime minStartLocalTime = LocalTime.parse(minStartTime);
         System.out.println("Wprowadź priorytet spotkania:");
-        Integer priority = Integer.parseInt(in.nextLine());
+        int priority = Integer.parseInt(in.nextLine());
         System.out.println(kalendarz.showMeetings(day, spotkanie ->
                 spotkanie.getStartTime().isAfter(minStartLocalTime) && spotkanie.getPriority() == priority));
     }
     private static void showDayMeetings(Scanner in, Kalendarz kalendarz) {
         System.out.print("Wprowadź numer dnia: ");
-        Integer day = Integer.parseInt(in.nextLine());
+        int day = Integer.parseInt(in.nextLine());
         try {
             System.out.println(kalendarz.showMeetings(day, spotkanie -> true));
         } catch (IllegalArgumentException e) {
@@ -140,9 +146,9 @@ public class Main {
 
     private static void showMetingsWithPriority(Scanner in, Kalendarz kalendarz) {
         System.out.print("Wprowadź numer dnia:");
-        Integer day = Integer.parseInt(in.nextLine());
+        int day = Integer.parseInt(in.nextLine());
         System.out.println("Wprowadź priorytet spotkania:");
-        Integer priority = Integer.parseInt(in.nextLine());
+        int priority = Integer.parseInt(in.nextLine());
         System.out.println(kalendarz.showMeetings(day, spotkanie -> spotkanie.getPriority() == priority));
     }
 }

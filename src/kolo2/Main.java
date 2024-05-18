@@ -4,10 +4,8 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
-import kolo2.paczka.*; // Zawsze pełna ścieżka do paczki, nie wzgledna
 //import kolo2.*.podpaczka; !!!! to nie przejdzie
-import kolo2.*; //  ZAWSZE KROPKA PRZED *
-import kolo2.paczka.podpaczka.KlasaZPodpaczki;
+//import kolo2.*; //  ZAWSZE KROPKA PRZED *
 
 
 public class Main {
@@ -16,7 +14,7 @@ public class Main {
         LocalDate myDate = LocalDate.ofYearDay(2024, 250);
         LocalDateTime myDateTime = LocalDateTime.of(myDate, myTime);
         LocalDateTime secondDateTime = LocalDateTime.parse("2024-09-06T10:40");
-        System.out.println(myDateTime.toString());
+        System.out.println(myDateTime);
         System.out.println(myDateTime.equals(secondDateTime));
         System.out.println(myDateTime == secondDateTime);
 

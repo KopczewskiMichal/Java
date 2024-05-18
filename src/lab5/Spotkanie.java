@@ -1,7 +1,6 @@
 package lab5;
 
 import java.time.LocalTime;
-import java.time.format.DateTimeParseException;
 
 public class Spotkanie {
     private int priority;
@@ -38,7 +37,7 @@ public class Spotkanie {
         this.description = description;
     }
 
-    public static Spotkanie makeSpotkanie (int prority, String startTime, String endTime, String description) throws DateTimeParseException{
+    public static Spotkanie makeSpotkanie (int prority, String startTime, String endTime, String description) {
         final Spotkanie spotkanie = new Spotkanie();
         spotkanie.setDescription(description);
         spotkanie.setPriority(prority);

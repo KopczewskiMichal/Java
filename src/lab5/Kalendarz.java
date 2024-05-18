@@ -1,10 +1,12 @@
 package lab5;
 
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.function.Predicate;
 
 public class Kalendarz {
     private final ArrayList<ArrayList<Spotkanie>> kalendarz = new ArrayList<>();
+    private final LocalTime EARLIEST_MEETING_TIME = LocalTime.of(9,0);
 
     public Kalendarz() {
         for (int i = 0; i < 7; i++) {
@@ -13,8 +15,12 @@ public class Kalendarz {
         }
     }
 
-    public void addMetting(int day, Spotkanie spotkanie) {
-        this.kalendarz.get(day - 1).add(spotkanie);
+    public void addMetting(int day, Spotkanie spotkanie) throws IllegalArgumentException{
+        if (spotkanie.getStartTime().isBefore(this.EARLIEST_MEETING_TIME)) {
+            throw new IllegalArgumentException("Zadbaj o sen, rozpocznij spotkanie po " + this.EARLIEST_MEETING_TIME);
+        } else {
+            this.kalendarz.get(day - 1).add(spotkanie);
+        }
     }
 
     public void removeMeeting (int dzien, int index) {
