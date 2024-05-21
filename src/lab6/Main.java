@@ -103,14 +103,15 @@ public class Main {
         LocalTime minStartLocalTime = LocalTime.parse(minStartTime);
         System.out.println("Wprowadź priorytet spotkania:");
         int priority = Integer.parseInt(in.nextLine());
+        //! ogarnij dobrego printa w tej klasie
         System.out.println(kalendarz.showEvents(day, spotkanie ->
-                spotkanie.getStartTime().isAfter(minStartLocalTime) && spotkanie.getPriority() == priority));
+                spotkanie.getStartTime().isAfter(minStartLocalTime) && spotkanie.getPriority() == priority), true);
     }
     private static void showDayMeetings(Scanner in, Kalendarz kalendarz) {
         System.out.print("Wprowadź numer dnia: ");
         int day = Integer.parseInt(in.nextLine());
         try {
-            System.out.println(kalendarz.showEvents(day, spotkanie -> true));
+            System.out.println(kalendarz.showEvents(day, spotkanie -> true), true);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }

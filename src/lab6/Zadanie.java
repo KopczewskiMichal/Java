@@ -5,6 +5,10 @@ import java.time.LocalTime;
 public final class Zadanie extends Zdarzenie {
     private int status;
 
+    public int getStatus(){
+        return this.status;
+    }
+
     protected Zadanie(LocalTime startTime, LocalTime endTime, String description, int status) {
         super(startTime, endTime, description);
         this.status = status;
