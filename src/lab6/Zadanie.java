@@ -16,9 +16,9 @@ public final class Zadanie extends Zdarzenie {
 
     @Override public String toString() {
         StringBuilder result = new StringBuilder();
-        result.append("Zadanie");
+        result.append("Zadanie\n");
         result.append(super.toString());
-        result.append("\n").append("Status: ").append(this.status);
+        result.append("\n").append("Status: ").append(this.status).append("\n");
         return result.toString();
     }
 }

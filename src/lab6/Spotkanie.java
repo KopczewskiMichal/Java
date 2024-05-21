@@ -16,9 +16,9 @@ public final class Spotkanie extends Zdarzenie{
 
     @Override public String toString() {
         StringBuilder result = new StringBuilder();
-        result.append("Spotkanie");
+        result.append("Spotkanie\n");
         result.append(super.toString());
-        result.append("\n").append("Priorytet: ").append(this.priority);
+        result.append("\n").append("Priorytet: ").append(this.priority).append("\n");
         return result.toString();
     }
 }
